@@ -6,6 +6,12 @@ python sample_visualize.py \
 --model_dir ../CAD/02958343 \
 --anno_file ../Anno3D/StanfordCars/train_anno.pkl
 
+# StanfordCars 3D v2
+python sample_visualize.py \
+--image_dir ../Image/StanfordCars/cars_train \
+--model_dir ../CAD/02958343 \
+--anno_file ../Anno3D/StanfordCars/train_anno_v2.pkl
+
 # CompCars 3D
 python sample_visualize.py \
 --image_dir ../Image/CompCars/image \
