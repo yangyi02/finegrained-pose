@@ -3,6 +3,22 @@ import numpy as np
 import scipy.io
 
 
+def compute_iou(segment1, segment2):
+    assert(len(segment1.shape) == 2 and len(segment2.shape) == 2)
+    if not segment1.shape[0] == segment2.shape[0] or not segment1.shape[1] == segment2.shape[1]:
+        segment2 = scipy.misc.imresize(segment2, segment1.shape, 'nearest')
+    if np.max(segment1) == 255:
+        segment1 = segment1 / 255
+    segment1 = segment1.astype(np.bool)
+    if np.max(segment2) == 255:
+        segment2 = segment2 / 255
+    segment2 = segment2.astype(np.bool)
+    inter = np.logical_and(segment1, segment2)
+    union = np.logical_or(segment1, segment2)
+    iou = np.sum(inter) * 1.0 / np.sum(union)
+    return iou
+
+
 def angle_to_rotmat(azimuth, elevation, theta):
     """
     Convert angles to rotation matrix
@@ -41,7 +57,7 @@ def proj(x3d, R, d, uv, f):
     v = uv[1]
     # construct projection matrix
     intrinsic = np.array([
-        [f,   0.,   u], 
+        [f,   0.,   u],
         [0.,   f,   v],
         [0.,     0.,  1.]])
     T = np.array([[0.], [0.], [d]])
@@ -79,18 +95,18 @@ def read_obj(obj_file_name, target_file_name='NOT_SAVE', verbose=False, opt_save
             x = float(line_segs[1])
             y = float(line_segs[2])
             z = float(line_segs[3])
-            vertices.append([x, y, z]) 
+            vertices.append([x, y, z])
             if verbose and len(vertices) > 0:
                 print("vertex: ", vertices[-1])
         elif line_segs[0] == 'f':  # process a face
             face_tmp = []
-            for j in range(1, 4): 
+            for j in range(1, 4):
                 face_tmp.append(int(line_segs[j].split('/')[0]) - 1)
             faces.append(face_tmp)
             if verbose and len(faces) > 0:
                 print("face: ", faces[-1])
 
-    # put read info into numpy arrays    
+    # put read info into numpy arrays
     num_vertex = len(vertices)
     num_face = len(faces)
     if verbose:

@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from six.moves import cPickle as pickle
 import scipy.misc
 import sample_visualize
-from search_pose import compute_iou
+from utils import compute_iou
 
 
 def main():
@@ -20,15 +20,15 @@ def main():
     )
     parser.add_argument(
         '--deeplab_segment_dir',
-        default='../Segment_DeepLab/StanfordCars/cars_train'
+        default='./Segment_DeepLab/StanfordCars/cars_train'
     )
     parser.add_argument(
         '--mrcnn_segment_dir',
-        default='../Segment_MaskRCNN/StanfordCars/cars_train'
+        default='./Segment_MaskRCNN/StanfordCars/cars_train'
     )
     parser.add_argument(
         '--segment_dir',
-        default='../Segment/StanfordCars/cars_train'
+        default='./Segment_Final/StanfordCars/cars_train'
     )
     parser.add_argument(
         '--anno_file',
@@ -39,11 +39,14 @@ def main():
         default='../CAD/02958343'
     )
     parser.add_argument(
+        '--class_label',
+        default='car'
+    )
+    parser.add_argument(
         '--visualize',
         action='store_true'
     )
     args = parser.parse_args()
-    print(args)
 
     # load annotation
     with open(args.anno_file, 'rb') as f:
@@ -71,14 +74,19 @@ def main():
         # Search for best overlapped instance segmentation mask
         best_iou = 0
         for i in range(len(mrcnn_segment['class_ids'])):
-            assert(mrcnn_segment['class_ids'][i] == 3 or mrcnn_segment['class_ids'][i] == 8)
+            if args.class_label == 'car':
+                assert(mrcnn_segment['class_ids'][i] == 3 or mrcnn_segment['class_ids'][i] == 8)
+            elif args.class_label == 'aeroplane':
+                assert(mrcnn_segment['class_ids'][i] == 5)
+            else:
+                raise ValueError('class label must be either car or aeroplane.')
             iou = compute_iou(mrcnn_segment['masks'][:, :, i], mask)
             if iou > best_iou:
                 final_segment = mrcnn_segment['masks'][:, :, i].astype(np.uint8)
                 final_segment = scipy.misc.imresize(final_segment, mask.shape, 'nearest')
                 best_iou = iou
 
-        # If there is only one car in the image, also compare with deeplab results
+        # If there is only one object in the image, also compare with deeplab results
         if len(mrcnn_segment['class_ids']) <= 1:
             iou = compute_iou(deeplab_segment, mask)
             if iou > best_iou:
@@ -98,6 +106,7 @@ def main():
         segment = np.dstack((final_segment, final_segment, final_segment))
         scipy.misc.imsave(segment_file, segment)
         print('merge segment from %s and %s to %s' % (deeplab_file, mrcnn_file, segment_file))
+        break
 
 
 if __name__ == '__main__':

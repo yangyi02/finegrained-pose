@@ -24,6 +24,10 @@ def main():
         default='./deeplab_model/deeplabv3_pascal_trainval_2018_01_04.tar.gz'
     )
     parser.add_argument(
+        '--class_label',
+        default='car'
+    )
+    parser.add_argument(
         '--visualize',
         action='store_true'
     )
@@ -40,7 +44,12 @@ def main():
         if args.visualize:
             deeplab.vis_segmentation(resized_image, seg_map)
         final_seg_map = np.zeros_like(seg_map)
-        final_seg_map[seg_map == 7] = 1
+        if args.class_label == 'car':
+            final_seg_map[seg_map == 7] = 1
+        elif args.class_label == 'aeroplane':
+            final_seg_map[seg_map == 1] = 1
+        else:
+            raise ValueError('class label must be either car or aeroplane.')
         image_id, ext = os.path.splitext(image_name)
         segment_file = os.path.join(args.segment_dir, image_id + '.png')
         scipy.misc.imsave(segment_file, final_seg_map)

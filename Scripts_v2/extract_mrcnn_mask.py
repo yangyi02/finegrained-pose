@@ -24,6 +24,10 @@ def main():
         default='./maskrcnn_model/mask_rcnn_coco.h5'
     )
     parser.add_argument(
+        '--class_label',
+        default='car'
+    )
+    parser.add_argument(
         '--visualize',
         action='store_true'
     )
@@ -45,11 +49,20 @@ def main():
 
         final_result = {'class_ids': [], 'masks': [], 'rois': [], 'scores': []}
         for i in range(len(r['class_ids'])):
-            if r['class_ids'][i] == 3 or r['class_ids'][i] == 8:
-                final_result['class_ids'].append(r['class_ids'][i])
-                final_result['masks'].append(r['masks'][:, :, i])
-                final_result['rois'].append(r['rois'][i, :])
-                final_result['scores'].append(r['scores'][i])
+            if args.class_label == 'car':
+                if r['class_ids'][i] == 3 or r['class_ids'][i] == 8:
+                    final_result['class_ids'].append(r['class_ids'][i])
+                    final_result['masks'].append(r['masks'][:, :, i])
+                    final_result['rois'].append(r['rois'][i, :])
+                    final_result['scores'].append(r['scores'][i])
+            elif args.class_label == 'aeroplane':
+                if r['class_ids'][i] == 5:
+                    final_result['class_ids'].append(r['class_ids'][i])
+                    final_result['masks'].append(r['masks'][:, :, i])
+                    final_result['rois'].append(r['rois'][i, :])
+                    final_result['scores'].append(r['scores'][i])
+            else:
+                raise ValueError('class label must be either car or aeroplane.')
         if len(final_result['class_ids']) > 0:
             final_result['class_ids'] = np.array(final_result['class_ids'])
             final_result['masks'] = np.array(final_result['masks'])

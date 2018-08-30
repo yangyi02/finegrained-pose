@@ -29,8 +29,8 @@ def search_pose(anno, param, segment):
         segment = segment[:, :, 0]
 
     param['proj_param'] = sample_visualize.gen_proj_param(anno, param['image_file'])
-    mask = sample_visualize.visualize_binary_mask(param)
-    # image, mask = sample_visualize.get_binary_mask(param)
+    # mask = sample_visualize.visualize_binary_mask(param)
+    image, mask = sample_visualize.get_binary_mask(param)
     iou = compute_iou(mask, segment)
     print(iou)
 
@@ -62,9 +62,9 @@ def search_pose(anno, param, segment):
                 anno[keywords[k]] = anno[keywords[k]] - alpha * step_size[k]
                 iou = iou2
             print(cnt, alpha, k, iou)
-        param['proj_param'] = sample_visualize.gen_proj_param(anno, param['image_file'])
-        mask = sample_visualize.visualize_binary_mask(param)
-        iou = compute_iou(mask, segment)
+        # param['proj_param'] = sample_visualize.gen_proj_param(anno, param['image_file'])
+        # mask = sample_visualize.visualize_binary_mask(param)
+        # iou = compute_iou(mask, segment)
         cnt = cnt + 1
         if iou == last_iou:
             break
@@ -94,21 +94,15 @@ def main():
     )
     parser.add_argument(
         '--segment_dir',
-        default='../Segment/StanfordCars/cars_train'
-    )
-    parser.add_argument(
-        '--new_anno_dir',
-        default='../Anno3D/StanfordCars/train_anno_new'
+        default='./Segment_Final/StanfordCars/cars_train'
     )
     args = parser.parse_args()
-    print(args)
 
     # load annotation
     with open(args.anno_file, 'rb') as f:
         annos = pkl.load(f)
 
     keys = sorted(annos.keys())
-    keys = keys[6:]
     for key in keys:
         start_time = time.time()
         anno = annos[key]
@@ -122,11 +116,6 @@ def main():
         segment = np.array(Image.open(param['segment_file']))
 
         anno = search_pose(anno, param, segment)
-        # new_anno = dict()
-        # new_anno[key] = anno
-        # file_name = image_id + '.pkl'
-        # with open(os.path.join(args.new_anno_dir, file_name), 'wb') as handle:
-        #     pkl.dump(new_anno, handle)
         elapsed_time = time.time() - start_time
         print('Spend %s' % time.strftime('%H:%M:%S', time.gmtime(elapsed_time)))
         break
