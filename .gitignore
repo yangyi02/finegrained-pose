@@ -1,3 +1,6 @@
 *.pyc
 .DS_Store
 .idea
+deeplab_model/
+maskrcnn_model/
+Mask_RCNN/
