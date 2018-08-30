@@ -4,3 +4,4 @@
 deeplab_model/
 maskrcnn_model/
 Mask_RCNN/
+__pycache__
