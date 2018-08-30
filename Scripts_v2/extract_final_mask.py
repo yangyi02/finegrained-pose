@@ -20,15 +20,15 @@ def main():
     )
     parser.add_argument(
         '--deeplab_segment_dir',
-        default='./Segment_DeepLab/StanfordCars/cars_train'
+        default='../Segment_DeepLab/StanfordCars/cars_train'
     )
     parser.add_argument(
         '--mrcnn_segment_dir',
-        default='./Segment_MaskRCNN/StanfordCars/cars_train'
+        default='../Segment_MaskRCNN/StanfordCars/cars_train'
     )
     parser.add_argument(
         '--segment_dir',
-        default='./Segment_Final/StanfordCars/cars_train'
+        default='../Segment_Final/StanfordCars/cars_train'
     )
     parser.add_argument(
         '--anno_file',
@@ -88,11 +88,8 @@ def main():
 
         # If there is only one object in the image, also compare with deeplab results
         if len(mrcnn_segment['class_ids']) <= 1:
-            iou = compute_iou(deeplab_segment, mask)
-            if iou > best_iou:
-                final_segment = deeplab_segment
-                best_iou = iou
-                print('Use deeplab results %s' % deeplab_file)
+            final_segment = deeplab_segment
+            print('Use deeplab results %s' % deeplab_file)
 
         final_segment = final_segment.astype(np.uint8)
         if args.visualize:

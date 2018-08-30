@@ -17,11 +17,11 @@ def main():
     )
     parser.add_argument(
         '--segment_dir',
-        default='./Segment_DeepLab/StanfordCars/cars_train'
+        default='../Segment_DeepLab/StanfordCars/cars_train'
     )
     parser.add_argument(
         '--model_path',
-        default='./deeplab_model/deeplabv3_pascal_trainval_2018_01_04.tar.gz'
+        default='../deeplab_model/deeplabv3_pascal_trainval_2018_01_04.tar.gz'
     )
     parser.add_argument(
         '--class_label',

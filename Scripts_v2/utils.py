@@ -1,11 +1,13 @@
 from math import *
 import numpy as np
 import scipy.io
+import scipy.misc
 
 
 def compute_iou(segment1, segment2):
     assert(len(segment1.shape) == 2 and len(segment2.shape) == 2)
     if not segment1.shape[0] == segment2.shape[0] or not segment1.shape[1] == segment2.shape[1]:
+        segment2 = segment1.astype(np.float)
         segment2 = scipy.misc.imresize(segment2, segment1.shape, 'nearest')
     if np.max(segment1) == 255:
         segment1 = segment1 / 255

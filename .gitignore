@@ -8,6 +8,6 @@ __pycache__
 Anno3D/
 Image/
 CAD/
-Segment_Final/
-Segment_DeepLab/
-Segment_MaskRCNN/
+#Segment_Final/
+#Segment_DeepLab/
+#Segment_MaskRCNN/

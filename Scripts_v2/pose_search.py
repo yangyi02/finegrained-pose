@@ -90,7 +90,7 @@ def main():
         annos = pkl.load(f)
 
     keys = sorted(annos.keys())
-    # keys = keys[690:]
+    keys = keys[3148:]
     for key in keys:
         start_time = time.time()
         anno = annos[key]

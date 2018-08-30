@@ -17,11 +17,11 @@ def main():
     )
     parser.add_argument(
         '--segment_dir',
-        default='./Segment_MaskRCNN/StanfordCars/cars_train'
+        default='../Segment_MaskRCNN/StanfordCars/cars_train'
     )
     parser.add_argument(
         '--model_path',
-        default='./maskrcnn_model/mask_rcnn_coco.h5'
+        default='../maskrcnn_model/mask_rcnn_coco.h5'
     )
     parser.add_argument(
         '--class_label',
