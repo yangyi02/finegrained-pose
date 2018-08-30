@@ -5,5 +5,9 @@ deeplab_model/
 maskrcnn_model/
 Mask_RCNN/
 __pycache__
+Anno3D/
 Image/
 CAD/
+Segment_Final/
+Segment_DeepLab/
+Segment_MaskRCNN/

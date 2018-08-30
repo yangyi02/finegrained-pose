@@ -76,7 +76,7 @@ def main():
     )
     parser.add_argument(
         '--segment_dir',
-        default='../Segment/StanfordCars/cars_train'
+        default='./Segment_Final/StanfordCars/cars_train'
     )
     parser.add_argument(
         '--new_anno_dir',
@@ -90,7 +90,7 @@ def main():
         annos = pkl.load(f)
 
     keys = sorted(annos.keys())
-    keys = keys[690:]
+    # keys = keys[690:]
     for key in keys:
         start_time = time.time()
         anno = annos[key]

@@ -106,7 +106,7 @@ def main():
         segment = np.dstack((final_segment, final_segment, final_segment))
         scipy.misc.imsave(segment_file, segment)
         print('merge segment from %s and %s to %s' % (deeplab_file, mrcnn_file, segment_file))
-        break
+        # break
 
 
 if __name__ == '__main__':
