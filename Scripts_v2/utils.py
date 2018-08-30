@@ -4,23 +4,6 @@ import scipy.io
 import scipy.misc
 
 
-def compute_iou(segment1, segment2):
-    assert(len(segment1.shape) == 2 and len(segment2.shape) == 2)
-    if not segment1.shape[0] == segment2.shape[0] or not segment1.shape[1] == segment2.shape[1]:
-        segment2 = segment2.astype(np.float)
-        segment2 = scipy.misc.imresize(segment2, segment1.shape, 'nearest')
-    if np.max(segment1) == 255:
-        segment1 = segment1 / 255
-    segment1 = segment1.astype(np.bool)
-    if np.max(segment2) == 255:
-        segment2 = segment2 / 255
-    segment2 = segment2.astype(np.bool)
-    inter = np.logical_and(segment1, segment2)
-    union = np.logical_or(segment1, segment2)
-    iou = np.sum(inter) * 1.0 / np.sum(union)
-    return iou
-
-
 def angle_to_rotmat(azimuth, elevation, theta):
     """
     Convert angles to rotation matrix
