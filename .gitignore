@@ -5,3 +5,5 @@ deeplab_model/
 maskrcnn_model/
 Mask_RCNN/
 __pycache__
+Image/
+CAD/
