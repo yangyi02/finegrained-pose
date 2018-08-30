@@ -1,6 +1,4 @@
-# 3d_pose_fine_grained
-
-3D Pose Annotation for Fine-Grained Object Categories
+# 3D Pose Annotation for Fine-Grained Object Categories
 
 
 
