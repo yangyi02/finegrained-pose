@@ -331,15 +331,15 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '--anno_file',
-        default='../Anno3D/StanfordCars/train_anno.pkl'
+        default='../Anno3D/StanfordCars/test_anno.pkl'
     )
     parser.add_argument(
         '--new_anno_dir',
-        default='../Anno3D/StanfordCars/train_anno_new'
+        default='../Anno3D/StanfordCars/test_anno_new'
     )
     parser.add_argument(
         '--image_dir',
-        default='../Image/StanfordCars/cars_train'
+        default='../Image/StanfordCars/cars_test'
     )
     parser.add_argument(
         '--model_dir',
@@ -355,7 +355,7 @@ def main():
         annos = pkl.load(f)
 
     keys = sorted(annos.keys())
-    # keys = keys[10:]
+    keys = keys[3148:]
     for key in keys:
         # prepare the parameters to visualize the sample
         anno = annos[key]

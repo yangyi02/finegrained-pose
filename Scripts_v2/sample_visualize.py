@@ -203,7 +203,6 @@ def get_binary_mask(param, w_default=300):
         print("Image file does not exsists. Skip %s" % image_file)
         return
     img = Image.open(image_file)
-    # print("Processing %s" % image_file)
     w = w_default
     h = int(w * img.height / float(img.width))
     img = img.resize((w, h), Image.ANTIALIAS)

@@ -64,11 +64,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '--anno_file',
-        default='../Anno3D/StanfordCars/train_anno.pkl'
+        default='../Anno3D/StanfordCars/test_anno.pkl'
     )
     parser.add_argument(
         '--image_dir',
-        default='../Image/StanfordCars/cars_train'
+        default='../Image/StanfordCars/cars_test'
     )
     parser.add_argument(
         '--model_dir',
@@ -76,11 +76,11 @@ def main():
     )
     parser.add_argument(
         '--segment_dir',
-        default='./Segment_Final/StanfordCars/cars_train'
+        default='../Segment_Final/StanfordCars/cars_test'
     )
     parser.add_argument(
         '--new_anno_dir',
-        default='../Anno3D/StanfordCars/train_anno_new'
+        default='../Anno3D/StanfordCars/test_anno_new'
     )
     args = parser.parse_args()
     print(args)

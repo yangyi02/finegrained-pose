@@ -3,7 +3,7 @@ import argparse
 import skimage.io
 import numpy as np
 from six.moves import cPickle as pickle
-import mask_rcnn
+import maskrcnn
 
 
 def main():
@@ -33,7 +33,7 @@ def main():
     )
     args = parser.parse_args()
 
-    model = mask_rcnn.load_model(args.model_path)
+    model = maskrcnn.load_model(args.model_path)
 
     image_names = os.listdir(args.image_dir)
     image_names = sorted(image_names)
@@ -45,7 +45,7 @@ def main():
         results = model.detect([image], verbose=1)
         r = results[0]
         if args.visualize:
-            mask_rcnn.vis_segmentation(image, r)
+            maskrcnn.vis_segmentation(image, r)
 
         final_result = {'class_ids': [], 'masks': [], 'rois': [], 'scores': []}
         for i in range(len(r['class_ids'])):
@@ -70,7 +70,7 @@ def main():
             final_result['rois'] = np.array(final_result['rois'])
             final_result['scores'] = np.array(final_result['scores'])
         if args.visualize:
-            mask_rcnn.vis_segmentation(image, final_result)
+            maskrcnn.vis_segmentation(image, final_result)
 
         image_id, ext = os.path.splitext(image_name)
         segment_file = os.path.join(args.segment_dir, image_id + '.pkl')
