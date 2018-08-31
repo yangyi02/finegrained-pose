@@ -217,114 +217,6 @@ def get_binary_mask(param, w_default=300):
     return img_array, mask
 
 
-def visualize_binary_mask(param):
-    """
-        Visualize a single sample with segmentation mask
-    """
-    img_array, mask = get_binary_mask(param)
-    mask = np.dstack((np.zeros_like(mask), mask, np.zeros_like(mask)))  # Make mask a green mask
-    img_array = img_array.astype(np.float) / 255.0 * 0.8 + mask.astype(np.float) / 255.0 * 0.2
-    plt.subplots()
-    plt.imshow(img_array)
-    plt.axis('off')
-    plt.show()
-    plt.subplots()
-    plt.imshow(mask)
-    plt.axis('off')
-    plt.show()
-    mask = mask[:, :, 1]
-    return mask
-
-
-def draw_statistics(annos):
-    """
-        Draw overall statistics of the annotation
-    """
-    # Fetch all the 7 parameters across all images
-    azimuth, elevation, theta, distance, f, u, v = [], [], [], [], [], [], []
-    for key, value in annos.iteritems():
-        azimuth.append(value['azimuth'])
-        elevation.append(value['elevation'])
-        theta.append(value['theta'])
-        distance.append(value['distance'])
-        f.append(value['f'])
-        u.append(value['u'])
-        v.append(value['v'])
-    azimuth, elevation, theta = np.array(azimuth), np.array(elevation), np.array(theta)
-    distance, f, u, v = np.array(distance), np.array(f), np.array(u), np.array(v)
-    # Start drawing statistics
-    matplotlib.rcParams.update({'font.size': 20})
-    # Draw azimuth statistics
-    fig = plt.figure()
-    ax = fig.add_axes([0.1, 0.1, 0.8, 0.8], polar=True)
-    N = 20
-    angles = np.arange(0.0, 2 * np.pi, 2 * np.pi / N)
-    bins = np.append(angles, 2 * np.pi)
-    weights = np.ones_like(azimuth) / float(len(azimuth))
-    radii = np.histogram(azimuth, bins=bins, weights=weights)
-    radii = radii[0]
-    max_radii = np.max(radii)
-    print(max_radii)
-    width = np.ones(N) * 2 * np.pi / N
-    bars = ax.bar(angles, radii, width=width, bottom=0.0)
-    for r, bar in zip(radii, bars):
-        bar.set_facecolor(cm.jet(r/max_radii))
-        bar.set_alpha(0.5)
-    ax.set_rticks([0, 0.1, 0.2])
-    plt.show()
-    # Draw elevation statistics
-    fig = plt.figure()
-    ax = fig.add_axes([0.1, 0.1, 0.8, 0.8], polar=True)
-    N = 20
-    angles = np.arange(-np.pi, np.pi, 2 * np.pi / N)
-    bins = np.append(angles, np.pi)
-    weights = np.ones_like(elevation) / float(len(elevation))
-    radii = np.histogram(elevation, bins=bins, weights=weights)
-    radii = radii[0]
-    max_radii = np.max(radii)
-    print(max_radii)
-    width = np.ones(N) * 2 * np.pi / N
-    bars = ax.bar(angles, radii, width=width, bottom=0.0)
-    for r, bar in zip(radii, bars):
-        bar.set_facecolor(cm.jet(r/max_radii))
-        bar.set_alpha(0.5)
-    ax.set_rticks([0, 0.25, 0.5, 0.75])
-    plt.show()
-    # Draw theta statistics
-    fig = plt.figure()
-    ax = fig.add_axes([0.1, 0.1, 0.8, 0.8], polar=True)
-    N = 20
-    angles = np.arange(-np.pi, np.pi, 2 * np.pi / N)
-    bins = np.append(angles, np.pi)
-    weights = np.ones_like(theta) / float(len(theta))
-    radii = np.histogram(theta, bins=bins, weights=weights)
-    radii = radii[0]
-    max_radii = np.max(radii)
-    print(max_radii)
-    width = np.ones(N) * 2 * np.pi / N
-    bars = ax.bar(angles, radii, width=width, bottom=0.0)
-    for r, bar in zip(radii, bars):
-        bar.set_facecolor(cm.jet(r/max_radii))
-        bar.set_alpha(0.5)
-    ax.set_rticks([0, 0.2, 0.4, 0.6])
-    # Draw distance statistics
-    fig = plt.figure()
-    plt.hist(distance)
-    print(np.min(distance), np.max(distance), np.median(distance))
-    # Draw f statistics
-    fig = plt.figure()
-    plt.hist(f)
-    print(np.min(f), np.max(f), np.median(f))
-    # Draw u v statistics
-    fig = plt.figure()
-    plt.hist(u)
-    print(np.min(u), np.max(u), np.median(u))
-    fig = plt.figure()
-    plt.hist(v)
-    print(np.min(v), np.max(v), np.median(v))
-    plt.show()
-
-
 def main():
     """
         Visualize the first sample of a set of annotations
@@ -352,7 +244,7 @@ def main():
     )
     parser.add_argument(
         '--new_overlay_dir',
-        default='../Overlay/StanfordCars/cars_train_v2'
+        default='../Overlay_v2/StanfordCars/cars_train'
     )
     parser.add_argument(
         '--draw_statistics',
@@ -360,16 +252,15 @@ def main():
     )
     args = parser.parse_args()
 
-    with open(args.anno_file, 'rb') as f:
-        annos = pkl.load(f)
-
     if not os.path.exists(args.overlay_dir):
         os.makedirs(args.overlay_dir)
     if not os.path.exists(args.new_overlay_dir):
         os.makedirs(args.new_overlay_dir)
 
+    with open(args.anno_file, 'rb') as f:
+        annos = pkl.load(f)
+
     keys = sorted(annos.keys())
-    keys = keys[0:]
     for key in keys:
         print('processing %s' % key)
         # prepare the parameters to visualize the sample

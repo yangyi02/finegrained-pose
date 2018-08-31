@@ -109,7 +109,7 @@ def main():
     )
     parser.add_argument(
         '--new_anno_dir',
-        default='../Anno3D/StanfordCars/train_anno_v2'
+        default='../Anno3D_v2/StanfordCars/train_anno'
     )
     parser.add_argument(
         '--visualize',
@@ -117,6 +117,9 @@ def main():
     )
     args = parser.parse_args()
     args.visualize = True
+
+    if not os.path.exists(args.new_anno_dir):
+        os.makedirs(args.new_anno_dir)
 
     # load annotation
     with open(args.anno_file, 'rb') as f:
@@ -126,7 +129,7 @@ def main():
     maskrcnn_model = maskrcnn.load_model(args.maskrcnn_model_path)
 
     keys = sorted(annos.keys())
-    keys = keys[0:50]
+    keys = keys[0:2]
     for key in keys:
         start_time = time.time()
         anno = annos[key]
@@ -213,7 +216,7 @@ def main():
         image_id, ext = os.path.splitext(key)
         file_name = image_id + '.pkl'
         with open(os.path.join(args.new_anno_dir, file_name), 'wb') as handle:
-            pkl.dump(new_anno, handle)
+            pkl.dump(new_anno, handle, protocol=2)
         elapsed_time = time.time() - start_time
         print('Spend %s' % time.strftime('%H:%M:%S', time.gmtime(elapsed_time)))
         break
