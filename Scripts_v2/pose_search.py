@@ -78,7 +78,8 @@ def search_pose(anno, param, segment_reference, visualize):
 
 def main():
     """
-        Extract instance car segmentation results by merging DeepLab and Mask RCNN results
+        Extract instance segmentation results by merging DeepLab and Mask RCNN results
+        Then search pose using the segmentation as reference
     """
     parser = argparse.ArgumentParser()
     parser.add_argument(
