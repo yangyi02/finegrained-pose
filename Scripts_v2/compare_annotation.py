@@ -228,7 +228,7 @@ def main():
     )
     parser.add_argument(
         '--new_anno_dir',
-        default='../Anno3D/StanfordCars/train_anno_v2'
+        default='../Anno3D_v2/StanfordCars/train_anno'
     )
     parser.add_argument(
         '--image_dir',
@@ -245,10 +245,6 @@ def main():
     parser.add_argument(
         '--new_overlay_dir',
         default='../Overlay_v2/StanfordCars/cars_train'
-    )
-    parser.add_argument(
-        '--draw_statistics',
-        action='store_true'
     )
     args = parser.parse_args()
 

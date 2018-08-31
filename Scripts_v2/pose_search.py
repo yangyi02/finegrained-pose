@@ -39,8 +39,7 @@ def search_pose(anno, param, segment_reference, visualize):
     else:
         image, mask = show_annotation.get_binary_mask(param)
     iou = compute_iou(mask, segment_reference)
-    if visualize:
-        print('initial iou:', iou)
+    print('initial iou:', iou)
 
     alpha = 1
     keywords = ['azimuth', 'elevation', 'theta', 'distance', 'f', 'u', 'v']
@@ -67,11 +66,10 @@ def search_pose(anno, param, segment_reference, visualize):
             elif iou2 >= iou and iou2 >= iou1:
                 anno[keywords[k]] = anno[keywords[k]] - alpha * step_size[k]
                 iou = iou2
-            if visualize:
-                print(cnt, alpha, k, iou)
         if visualize:
             param['proj_param'] = show_annotation.gen_proj_param(anno, param['image_file'])
             mask = show_annotation.visualize_binary_mask(param)
+        print(cnt, iou)
         cnt = cnt + 1
         if iou == last_iou:
             break
@@ -116,7 +114,6 @@ def main():
         action='store_true'
     )
     args = parser.parse_args()
-    args.visualize = True
 
     if not os.path.exists(args.new_anno_dir):
         os.makedirs(args.new_anno_dir)
@@ -216,7 +213,7 @@ def main():
         image_id, ext = os.path.splitext(key)
         file_name = image_id + '.pkl'
         with open(os.path.join(args.new_anno_dir, file_name), 'wb') as handle:
-            pkl.dump(new_anno, handle, protocol=2)
+            pickle.dump(new_anno, handle, protocol=2)
         elapsed_time = time.time() - start_time
         print('Spend %s' % time.strftime('%H:%M:%S', time.gmtime(elapsed_time)))
         break

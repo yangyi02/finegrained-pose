@@ -5,7 +5,7 @@ deeplab_model/
 maskrcnn_model/
 Mask_RCNN/
 __pycache__
-Anno3D/
+Anno3D*/
 Image/
 CAD/
-Overlay/
+Overlay*/
