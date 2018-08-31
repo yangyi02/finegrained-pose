@@ -15,6 +15,7 @@ import numpy as np
 
 from PIL import Image
 
+
 def loadTexture(filename):
     """load OpenGL 2D texture from given image file"""
     img = Image.open(filename) 
@@ -32,6 +33,7 @@ def loadTexture(filename):
     glBindTexture(GL_TEXTURE_2D, 0)
     return texture
 
+
 def perspective(fov, aspect, zNear, zFar):
     """returns matrix equivalent for gluPerspective"""
     fovR = math.radians(45.0)
@@ -41,6 +43,7 @@ def perspective(fov, aspect, zNear, zFar):
                         0.0, 0.0, (zFar+zNear)/float(zNear-zFar),  -1.0, 
                         0.0, 0.0, 2.0*zFar*zNear/float(zNear-zFar), 0.0], 
                        numpy.float32)
+
 
 def ortho(l, r, b, t, n, f):
     """returns matrix equivalent of glOrtho"""
@@ -90,12 +93,14 @@ def lookAt(eye, center, up):
     
     return t.dot(m)
 
+
 def translate(tx, ty, tz):
     """creates the matrix equivalent of glTranslate"""
     return np.array([1.0, 0.0, 0.0, 0.0, 
                      0.0, 1.0, 0.0, 0.0, 
                      0.0, 0.0, 1.0, 0.0, 
                      tx, ty, tz, 1.0], np.float32)
+
 
 def compileShader2(source, shaderType):
     """Compile shader source of given type
@@ -129,6 +134,7 @@ def compileShader2(source, shaderType):
             )
     return shader
 
+
 def loadShaders(strVS, strFS):
     """load vertex and fragment shaders from strings"""
     # compile vertex shader
@@ -139,7 +145,7 @@ def loadShaders(strVS, strFS):
     # create the program object
     program = glCreateProgram()
     if not program:
-        raise RunTimeError('glCreateProgram faled!')
+        raise RuntimeError('glCreateProgram faled!')
 
     # attach shaders
     glAttachShader(program, shaderV)
@@ -154,8 +160,8 @@ def loadShaders(strVS, strFS):
         infoLen = glGetProgramiv(program, GL_INFO_LOG_LENGTH)
         infoLog = ""
         if infoLen > 1:
-            infoLog = glGetProgramInfoLog(program, infoLen, None);
+            infoLog = glGetProgramInfoLog(program, infoLen, None)
         glDeleteProgram(program)
-        raise RunTimeError("Error linking program:\n%s\n", infoLog);
-    
+        raise RuntimeError("Error linking program:\n%s\n" % infoLog)
+
     return program

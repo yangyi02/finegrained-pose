@@ -126,7 +126,7 @@ def main():
     maskrcnn_model = maskrcnn.load_model(args.maskrcnn_model_path)
 
     keys = sorted(annos.keys())
-    keys = keys[0:2]
+    # keys = keys[0:100]
     for key in keys:
         start_time = time.time()
         anno = annos[key]

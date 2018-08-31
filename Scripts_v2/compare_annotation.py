@@ -9,12 +9,10 @@ import sys
 import argparse
 import pickle as pkl
 import numpy as np
-import matplotlib
 from PIL import Image
 import matplotlib.pyplot as plt
 from matplotlib.collections import PatchCollection
 from matplotlib.patches import Polygon
-import matplotlib.cm as cm
 import utils
 from OpenGL import GL
 from OpenGL.GL import *
@@ -257,7 +255,7 @@ def main():
         annos = pkl.load(f)
 
     keys = sorted(annos.keys())
-    keys = keys[265:]
+    keys = keys[0:]
     for key in keys:
         print('processing %s' % key)
         # prepare the parameters to visualize the sample

@@ -1,8 +1,5 @@
 import os
-from io import BytesIO
 import tarfile
-import tempfile
-from six.moves import urllib
 
 from matplotlib import gridspec
 from matplotlib import pyplot as plt
