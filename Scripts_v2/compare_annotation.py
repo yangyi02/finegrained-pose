@@ -20,6 +20,7 @@ from OpenGL import GL
 from OpenGL.GL import *
 import cyglfw3 as glfw
 import glutils
+import scipy.misc
 
 
 def gen_proj_param(anno_dict, img_file_path, w_default=300):
@@ -331,19 +332,27 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '--anno_file',
-        default='../Anno3D/StanfordCars/test_anno.pkl'
+        default='../Anno3D/StanfordCars/train_anno.pkl'
     )
     parser.add_argument(
         '--new_anno_dir',
-        default='../Anno3D/StanfordCars/test_anno_new'
+        default='../Anno3D/StanfordCars/train_anno_v2'
     )
     parser.add_argument(
         '--image_dir',
-        default='../Image/StanfordCars/cars_test'
+        default='../Image/StanfordCars/cars_train'
     )
     parser.add_argument(
         '--model_dir',
         default='../CAD/02958343'
+    )
+    parser.add_argument(
+        '--overlay_dir',
+        default='../Overlay/StanfordCars/cars_train'
+    )
+    parser.add_argument(
+        '--new_overlay_dir',
+        default='../Overlay/StanfordCars/cars_train_v2'
     )
     parser.add_argument(
         '--draw_statistics',
@@ -354,9 +363,15 @@ def main():
     with open(args.anno_file, 'rb') as f:
         annos = pkl.load(f)
 
+    if not os.path.exists(args.overlay_dir):
+        os.makedirs(args.overlay_dir)
+    if not os.path.exists(args.new_overlay_dir):
+        os.makedirs(args.new_overlay_dir)
+
     keys = sorted(annos.keys())
-    keys = keys[3148:]
+    keys = keys[0:]
     for key in keys:
+        print('processing %s' % key)
         # prepare the parameters to visualize the sample
         anno = annos[key]
         param = dict()
@@ -364,10 +379,11 @@ def main():
         param['model_file'] = os.path.join(args.model_dir, anno['model_id'], 'model.obj')
         param['proj_param'] = gen_proj_param(anno, param['image_file'])
 
-        # visualize
-        visualize_polygon(param)
-        # visualize mask
-        visualize_binary_mask(param)
+        img_array, mask = get_binary_mask(param)
+        mask = np.dstack((np.zeros_like(mask), mask, np.zeros_like(mask)))  # Make mask a green mask
+        img_array = img_array.astype(np.float) / 255.0 * 0.8 + mask.astype(np.float) / 255.0 * 0.2
+        file_name = os.path.join(args.overlay_dir, key)
+        scipy.misc.imsave(file_name, img_array)
 
         # load new annotation
         image_id, ext = os.path.splitext(key)
@@ -381,11 +397,11 @@ def main():
         param['model_file'] = os.path.join(args.model_dir, new_anno['model_id'], 'model.obj')
         param['proj_param'] = gen_proj_param(new_anno, param['image_file'])
 
-        # visualize
-        visualize_polygon(param)
-        # visualize mask
-        visualize_binary_mask(param)
-        break
+        img_array, mask = get_binary_mask(param)
+        mask = np.dstack((np.zeros_like(mask), mask, np.zeros_like(mask)))  # Make mask a green mask
+        img_array = img_array.astype(np.float) / 255.0 * 0.8 + mask.astype(np.float) / 255.0 * 0.2
+        file_name = os.path.join(args.new_overlay_dir, key)
+        scipy.misc.imsave(file_name, img_array)
 
 
 if __name__ == '__main__':

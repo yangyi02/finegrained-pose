@@ -6,7 +6,7 @@ import skimage.io
 import matplotlib.pyplot as plt
 from six.moves import cPickle as pickle
 import scipy.misc
-import sample_visualize
+import show_annotation
 import time
 import maskrcnn
 import deeplab
@@ -29,14 +29,15 @@ def compute_iou(segment1, segment2):
 
 
 def search_pose(anno, param, segment_reference, visualize):
+    visualize = False
     if len(segment_reference.shape) > 2:
         segment_reference = segment_reference[:, :, 0]
 
-    param['proj_param'] = sample_visualize.gen_proj_param(anno, param['image_file'])
+    param['proj_param'] = show_annotation.gen_proj_param(anno, param['image_file'])
     if visualize:
-        mask = sample_visualize.visualize_binary_mask(param)
+        mask = show_annotation.visualize_binary_mask(param)
     else:
-        image, mask = sample_visualize.get_binary_mask(param)
+        image, mask = show_annotation.get_binary_mask(param)
     iou = compute_iou(mask, segment_reference)
     if visualize:
         print('initial iou:', iou)
@@ -50,14 +51,14 @@ def search_pose(anno, param, segment_reference, visualize):
         for k in range(7):
             anno1 = anno.copy()
             anno1[keywords[k]] = anno1[keywords[k]] + alpha * step_size[k]
-            param['proj_param'] = sample_visualize.gen_proj_param(anno1, param['image_file'])
-            image, mask = sample_visualize.get_binary_mask(param)
+            param['proj_param'] = show_annotation.gen_proj_param(anno1, param['image_file'])
+            image, mask = show_annotation.get_binary_mask(param)
             iou1 = compute_iou(mask, segment_reference)
 
             anno2 = anno.copy()
             anno2[keywords[k]] = anno2[keywords[k]] - alpha * step_size[k]
-            param['proj_param'] = sample_visualize.gen_proj_param(anno2, param['image_file'])
-            image, mask = sample_visualize.get_binary_mask(param)
+            param['proj_param'] = show_annotation.gen_proj_param(anno2, param['image_file'])
+            image, mask = show_annotation.get_binary_mask(param)
             iou2 = compute_iou(mask, segment_reference)
 
             if iou1 >= iou and iou1 >= iou2:
@@ -69,8 +70,8 @@ def search_pose(anno, param, segment_reference, visualize):
             if visualize:
                 print(cnt, alpha, k, iou)
         if visualize:
-            param['proj_param'] = sample_visualize.gen_proj_param(anno, param['image_file'])
-            mask = sample_visualize.visualize_binary_mask(param)
+            param['proj_param'] = show_annotation.gen_proj_param(anno, param['image_file'])
+            mask = show_annotation.visualize_binary_mask(param)
         cnt = cnt + 1
         if iou == last_iou:
             break
@@ -108,7 +109,7 @@ def main():
     )
     parser.add_argument(
         '--new_anno_dir',
-        default='../Anno3D/StanfordCars/train_anno_new'
+        default='../Anno3D/StanfordCars/train_anno_v2'
     )
     parser.add_argument(
         '--visualize',
@@ -133,9 +134,9 @@ def main():
         param['image_file'] = os.path.join(args.image_dir, key)
         print("Processing %s" % param['image_file'])
         param['model_file'] = os.path.join(args.model_dir, anno['model_id'], 'model.obj')
-        param['proj_param'] = sample_visualize.gen_proj_param(anno, param['image_file'])
+        param['proj_param'] = show_annotation.gen_proj_param(anno, param['image_file'])
         # Get 2d mask projected from 3d model
-        image, mask = sample_visualize.get_binary_mask(param)
+        image, mask = show_annotation.get_binary_mask(param)
         # Get deeplab semantic segmentation
         image = Image.open(param['image_file'])
         resized_image, seg_map = deeplab_model.run(image)

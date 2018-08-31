@@ -6,7 +6,7 @@ python pose_search.py \
 --deeplab_model_path=./deeplab_model/deeplabv3_pascal_trainval_2018_01_04.tar.gz \
 --maskrcnn_model_path=./maskrcnn_model/mask_rcnn_coco.h5 \
 --class_label=car \
---new_anno_dir=../Anno3D/StanfordCars/train_anno_new
+--new_anno_dir=../Anno3D/StanfordCars/train_anno_v2
 
 # StanfordCars 3D test
 python pose_search.py \
@@ -16,7 +16,7 @@ python pose_search.py \
 --deeplab_model_path=./deeplab_model/deeplabv3_pascal_trainval_2018_01_04.tar.gz \
 --maskrcnn_model_path=./maskrcnn_model/mask_rcnn_coco.h5 \
 --class_label=car \
---new_anno_dir=../Anno3D/StanfordCars/test_anno_new
+--new_anno_dir=../Anno3D/StanfordCars/test_anno_v2
 
 # FGVC-Aircraft 3D train
 python pose_search.py \
@@ -26,7 +26,7 @@ python pose_search.py \
 --deeplab_model_path=./deeplab_model/deeplabv3_pascal_trainval_2018_01_04.tar.gz \
 --maskrcnn_model_path=./maskrcnn_model/mask_rcnn_coco.h5 \
 --class_label=aeroplane \
---new_anno_dir ../Anno3D/FGVC_Aircraft/train_anno_new
+--new_anno_dir ../Anno3D/FGVC_Aircraft/train_anno_v2
 
 # FGVC-Aircraft 3D test
 python pose_search.py \
@@ -36,4 +36,4 @@ python pose_search.py \
 --deeplab_model_path=./deeplab_model/deeplabv3_pascal_trainval_2018_01_04.tar.gz \
 --maskrcnn_model_path=./maskrcnn_model/mask_rcnn_coco.h5 \
 --class_label=aeroplane \
---new_anno_dir ../Anno3D/FGVC_Aircraft/test_anno_new
+--new_anno_dir ../Anno3D/FGVC_Aircraft/test_anno_v2
