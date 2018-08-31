@@ -216,7 +216,6 @@ def main():
             pickle.dump(new_anno, handle, protocol=2)
         elapsed_time = time.time() - start_time
         print('Spend %s' % time.strftime('%H:%M:%S', time.gmtime(elapsed_time)))
-        break
 
 
 if __name__ == '__main__':

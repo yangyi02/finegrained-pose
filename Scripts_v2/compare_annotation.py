@@ -257,6 +257,7 @@ def main():
         annos = pkl.load(f)
 
     keys = sorted(annos.keys())
+    keys = keys[265:]
     for key in keys:
         print('processing %s' % key)
         # prepare the parameters to visualize the sample
@@ -266,11 +267,13 @@ def main():
         param['model_file'] = os.path.join(args.model_dir, anno['model_id'], 'model.obj')
         param['proj_param'] = gen_proj_param(anno, param['image_file'])
 
-        img_array, mask = get_binary_mask(param)
+        image, mask = get_binary_mask(param)
+        if len(image.shape) == 2:
+            image = np.dstack((image, image, image))
         mask = np.dstack((np.zeros_like(mask), mask, np.zeros_like(mask)))  # Make mask a green mask
-        img_array = img_array.astype(np.float) / 255.0 * 0.8 + mask.astype(np.float) / 255.0 * 0.2
+        image = image.astype(np.float) / 255.0 * 0.8 + mask.astype(np.float) / 255.0 * 0.2
         file_name = os.path.join(args.overlay_dir, key)
-        scipy.misc.imsave(file_name, img_array)
+        scipy.misc.imsave(file_name, image)
 
         # load new annotation
         image_id, ext = os.path.splitext(key)
@@ -284,11 +287,13 @@ def main():
         param['model_file'] = os.path.join(args.model_dir, new_anno['model_id'], 'model.obj')
         param['proj_param'] = gen_proj_param(new_anno, param['image_file'])
 
-        img_array, mask = get_binary_mask(param)
+        image, mask = get_binary_mask(param)
+        if len(image.shape) == 2:
+            image = np.dstack((image, image, image))
         mask = np.dstack((np.zeros_like(mask), mask, np.zeros_like(mask)))  # Make mask a green mask
-        img_array = img_array.astype(np.float) / 255.0 * 0.8 + mask.astype(np.float) / 255.0 * 0.2
+        image = image.astype(np.float) / 255.0 * 0.8 + mask.astype(np.float) / 255.0 * 0.2
         file_name = os.path.join(args.new_overlay_dir, key)
-        scipy.misc.imsave(file_name, img_array)
+        scipy.misc.imsave(file_name, image)
 
 
 if __name__ == '__main__':
