@@ -28,3 +28,9 @@ CUDA_VISIBLE_DEVICES=1 python show_annotation.py \
 --anno_file ../Anno3D/FGVC_Aircraft/train_anno.pkl \
 --draw_statistics
 
+# FGVC-Aircraft 3D
+CUDA_VISIBLE_DEVICES=1 python show_annotation.py \
+--image_dir ../Image/FGVC_Aircraft/ \
+--model_dir ../CAD/02691156 \
+--anno_file ../Anno3D/FGVC_Aircraft/train_anno_v2.pkl \
+--draw_statistics
