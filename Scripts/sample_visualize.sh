@@ -24,3 +24,8 @@ python sample_visualize.py \
 --model_dir ../CAD/02691156 \
 --anno_file ../Anno3D/FGVC_Aircraft/train_anno.pkl
 
+# FGVC-Aircraft 3D
+python sample_visualize.py \
+--image_dir ../Image/FGVC_Aircraft/ \
+--model_dir ../CAD/02691156 \
+--anno_file ../Anno3D/FGVC_Aircraft/train_anno_v2.pkl
