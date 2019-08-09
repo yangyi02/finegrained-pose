@@ -8,8 +8,7 @@
 - Scripts: Sample scripts to visualize the annotations
 
 ## Format of Annotations
-The annotations are packed in pickle (.pkl) files, each of which include a dictionary of annotations,
-    dict['key'] = 'anno',
+The annotations are packed in pickle (.pkl) files, each of which include a dictionary of annotations, `dict['key'] = 'anno'`,
 where 'key' is the filename, and 'anno' is a dictionary containing the following fields:
     'model_id': the corresponding fine-grained 3D CAD model ID from ShapeNet
     'azimuth', 'elevation', 'theta': the rotation angles introduced in Section 3.2 of the paper
