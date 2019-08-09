@@ -8,13 +8,16 @@
 - Scripts: Sample scripts to visualize the annotations
 
 ## Format of Annotations
-The annotations are packed in pickle (.pkl) files, each of which include a dictionary of annotations, `dict['key'] = 'anno'`,
+The annotations are packed in pickle (.pkl) files, each of which include a dictionary of annotations, 
+
+dict['key'] = 'anno',
+
 where 'key' is the filename, and 'anno' is a dictionary containing the following fields:
-    'model_id': the corresponding fine-grained 3D CAD model ID from ShapeNet
-    'azimuth', 'elevation', 'theta': the rotation angles introduced in Section 3.2 of the paper
-    'distance': the parameter 'd' introduced in Section 3.2 of the paper
-    'u', 'v': the principal point (u, v) introduced in Equation (3) 
-    'f': the focal length f in Equation (3)
+- 'model_id': the corresponding fine-grained 3D CAD model ID from ShapeNet
+- 'azimuth', 'elevation', 'theta': the rotation angles introduced in Section 3.2 of the paper
+- 'distance': the parameter 'd' introduced in Section 3.2 of the paper
+- 'u', 'v': the principal point (u, v) introduced in Equation (3) 
+- 'f': the focal length f in Equation (3)
 
 ## Usage
 To use the 3D pose annotations, you need to download the 2D images from the fine-grained recognition datasets as well as the
