@@ -25,37 +25,37 @@ To use the 3D pose annotations, you need to download the 2D images from the fine
 (1) StanfordCars:
 http://imagenet.stanford.edu/internal/car196/cars_train.tgz
 http://imagenet.stanford.edu/internal/car196/cars_test.tgz
-After downloading, put the extracted directory cars_train and cars_test under Image/StanfordCars
+After downloading, put the extracted directory `cars_train` and `cars_test` under `Image/StanfordCars`.
 
 (2) FGVC_Aircraft:
 http://www.robots.ox.ac.uk/~vgg/data/fgvc-aircraft/archives/fgvc-aircraft-2013b.tar.gz
-After downloading, put the extracted directory fgvc-aircraft-2013b/data/images under Image/FGVC_Aircraft
+After downloading, put the extracted directory `fgvc-aircraft-2013b/data/images` under `Image/FGVC_Aircraft`.
 
 (3) CompCars:
 https://www.dropbox.com/sh/46de2cre37fvzu6/AABXtX8QqA6sx37k1IyZmNQ2a?dl=0
 Please contact the data provider of CompCars (yljatthu@gmail.com) for the extraction password.
-After downloading, put the extracted directory data/image under Image/CompCars
+After downloading, put the extracted directory `data/image` under `Image/CompCars`.
 
 
 2. Download 3D CAD Models
 (1) Cars (For StanfordCars/CompCars Use)
 http://shapenet.cs.stanford.edu/shapenet/obj-zip/ShapeNetCore.v1/02958343.zip
 After downloading, put the extracted 02958343 under CAD/
-Please see CAD/StanfordCars3D.txt and CAD/CompCars3D.txt for the list of CAD models used in our 3D pose datasets.
+Please see `CAD/StanfordCars3D.txt` and `CAD/CompCars3D.txt` for the list of CAD models used in our 3D pose datasets.
 
 (2) Aircraft (For FGVC_Aircraft Use)
 http://shapenet.cs.stanford.edu/shapenet/obj-zip/ShapeNetCore.v1/02691156.zip
 After downloading, put the extracted 02691156 under CAD/
-Please see CAD/FGVC_Aircraft3D.txt for the list of CAD models used in our 3D pose datasets.
+Please see `CAD/FGVC_Aircraft3D.txt` for the list of CAD models used in our 3D pose datasets.
 
 ## Visualization and Scripts
-To visualize the samples, under $Release, run
-cd Scripts && bash ./sample_visualize.sh
+To visualize the samples, under `$Release`, run
+`cd Scripts && bash ./sample_visualize.sh`
 
 The usage of our annotations can be seen from the following python scripts,
-utils.py: containing the code for projection as well as converting the angles to rotation matrix and a simple .obj file
+`utils.py`: containing the code for projection as well as converting the angles to rotation matrix and a simple .obj file
 reader
-sample_visualize.py: containing the code for visualization
+`sample_visualize.py`: containing the code for visualization
 
 ## Citation
 Please cite the paper in your publications if it helps your research:
