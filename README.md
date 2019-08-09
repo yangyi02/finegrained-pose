@@ -45,12 +45,12 @@ After downloading, put the extracted directory data/image under Image/CompCars
 
 2. Download 3D CAD Models
 (1) Cars (For StanfordCars/CompCars Use)
-http://shapenet.cs.stanford.edu/shapenet/obj-zip/02958343.zip
+http://shapenet.cs.stanford.edu/shapenet/obj-zip/ShapeNetCore.v1/02958343.zip
 After downloading, put the extracted 02958343 under CAD/
 Please see CAD/StanfordCars3D.txt and CAD/CompCars3D.txt for the list of CAD models used in our 3D pose datasets.
 
 (2) Aircraft (For FGVC_Aircraft Use)
-http://shapenet.cs.stanford.edu/shapenet/obj-zip/02691156.zip
+http://shapenet.cs.stanford.edu/shapenet/obj-zip/ShapeNetCore.v1/02691156.zip
 After downloading, put the extracted 02691156 under CAD/
 Please see CAD/FGVC_Aircraft3D.txt for the list of CAD models used in our 3D pose datasets.
 
@@ -70,18 +70,17 @@ sample_visualize.py: containing the code for visualization
 V. Citation
 Please cite the following paper if you find the dataset useful
 
-@article{
-author = {Yaming Wang and
-          Xiao Tan and
-          Yi Yang and
-          Xiao Liu and
-          Errui Ding and
-          Feng Zhou and
-          Larry S. Davis},
-title = {3D Pose Estimation for Fine-Grained Object Categories},
-journal = {CoRR},
-volume = {abs/1806.04314},
-year = {2018},
-url = {https://arxiv.org/abs/1806.04314},
+@inproceedings{wang20183d,
+  title={3d pose estimation for fine-grained object categories},
+  author={Wang, Yaming and Tan, Xiao and Yang, Yi and Liu, Xiao and Ding, Errui and Zhou, Feng and Davis, Larry S},
+  booktitle={Proceedings of the European Conference on Computer Vision (ECCV)},
+  pages={0--0},
+  year={2018}
 }
 
+@article{wang2018improving,
+  title={Improving Annotation for 3D Pose Dataset of Fine-Grained Object Categories},
+  author={Wang, Yaming and Tan, Xiao and Yang, Yi and Li, Ziyu and Liu, Xiao and Zhou, Feng and Davis, Larry S},
+  journal={arXiv preprint arXiv:1810.09263},
+  year={2018}
+}
