@@ -27,6 +27,7 @@ To use the 3D pose annotations, you need to download the 2D images from the fine
 
 #### (1) StanfordCars:
 http://imagenet.stanford.edu/internal/car196/cars_train.tgz
+
 http://imagenet.stanford.edu/internal/car196/cars_test.tgz
 
 After downloading, put the extracted directory `cars_train` and `cars_test` under `Image/StanfordCars`.
