@@ -57,7 +57,7 @@ After downloading, put the extracted 02691156 under CAD/
 Please see `CAD/FGVC_Aircraft3D.txt` for the list of CAD models used in our 3D pose datasets.
 
 ## Visualization and Scripts
-To visualize the samples, under `$Release`, run
+To visualize the samples, run
 `cd Scripts && bash ./sample_visualize.sh`
 
 The usage of our annotations can be seen from the following python scripts,
