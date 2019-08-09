@@ -1,11 +1,11 @@
 # 3D Pose Annotation for Fine-Grained Object Categories
 
 ## Contents of Directories
-Release:
-    Anno3D: 3D pose annotations for StanfordCars/FGVC_Aircraft/CompCars
-    CAD: Sample CAD models from ShapeNet for visualization use; list of CAD models used in our datasets
-    Image: Sample images from the fine-grained datasets for visualization use
-    Scripts: Sample scripts to visualize the annotations
+
+- Anno3D: 3D pose annotations for StanfordCars/FGVC_Aircraft/CompCars
+- CAD: Sample CAD models from ShapeNet for visualization use; list of CAD models used in our datasets
+- Image: Sample images from the fine-grained datasets for visualization use
+- Scripts: Sample scripts to visualize the annotations
 
 ## Format of Annotations
 The annotations are packed in pickle (.pkl) files, each of which include a dictionary of annotations,
