@@ -48,13 +48,13 @@ After downloading, put the extracted directory `data/image` under `Image/CompCar
 #### (1) Cars (For StanfordCars/CompCars Use)
 http://shapenet.cs.stanford.edu/shapenet/obj-zip/ShapeNetCore.v1/02958343.zip
 
-After downloading, put the extracted 02958343 under CAD/
+After downloading, put the extracted `02958343` under CAD/
 Please see `CAD/StanfordCars3D.txt` and `CAD/CompCars3D.txt` for the list of CAD models used in our 3D pose datasets.
 
 #### (2) Aircraft (For FGVC_Aircraft Use)
 http://shapenet.cs.stanford.edu/shapenet/obj-zip/ShapeNetCore.v1/02691156.zip
 
-After downloading, put the extracted 02691156 under CAD/
+After downloading, put the extracted `02691156` under CAD/
 Please see `CAD/FGVC_Aircraft3D.txt` for the list of CAD models used in our 3D pose datasets.
 
 ## Visualization and Scripts
