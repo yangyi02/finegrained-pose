@@ -1,5 +1,9 @@
 # 3D Pose Annotation for Fine-Grained Object Categories
 
+<p align="center">
+  <img width="75%" src="splash.png">
+</p>
+
 ## Contents of Directories
 
 - Anno3D: 3D pose annotations for StanfordCars/FGVC_Aircraft/CompCars
