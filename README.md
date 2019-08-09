@@ -70,6 +70,11 @@ The usage of our annotations can be seen from the following python scripts,
 reader
 - `sample_visualize.py`: containing the code for visualization
 
+## Publications
+- [3D Pose Estimation for Fine-Grained
+Object Categories](http://openaccess.thecvf.com/content_ECCVW_2018/papers/11129/Wang_3D_Pose_Estimation_for_Fine-Grained_Object_Categories_ECCVW_2018_paper.pdf)
+- [Improving Annotation for 3D Pose Dataset of Fine-Grained Object Categories](https://arxiv.org/pdf/1810.09263.pdf)
+
 ## Citation
 Please cite the paper in your publications if it helps your research:
 
