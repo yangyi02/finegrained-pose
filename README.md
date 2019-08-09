@@ -23,7 +23,7 @@ where 'key' is the filename, and 'anno' is a dictionary containing the following
 To use the 3D pose annotations, you need to download the 2D images from the fine-grained recognition datasets as well as the
 3D models from the ShapeNet dataset.
 
-1. Download 2D Images
+### 1. Download 2D Images
 
 (1) StanfordCars:
 http://imagenet.stanford.edu/internal/car196/cars_train.tgz
@@ -42,7 +42,7 @@ https://www.dropbox.com/sh/46de2cre37fvzu6/AABXtX8QqA6sx37k1IyZmNQ2a?dl=0
 Please contact the data provider of CompCars (yljatthu@gmail.com) for the extraction password.
 After downloading, put the extracted directory `data/image` under `Image/CompCars`.
 
-2. Download 3D CAD Models
+### 2. Download 3D CAD Models
 
 (1) Cars (For StanfordCars/CompCars Use)
 http://shapenet.cs.stanford.edu/shapenet/obj-zip/ShapeNetCore.v1/02958343.zip
