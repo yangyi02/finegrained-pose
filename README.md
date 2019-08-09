@@ -25,18 +25,18 @@ To use the 3D pose annotations, you need to download the 2D images from the fine
 
 ### 1. Download 2D Images
 
-(1) StanfordCars:
+#### (1) StanfordCars:
 http://imagenet.stanford.edu/internal/car196/cars_train.tgz
 http://imagenet.stanford.edu/internal/car196/cars_test.tgz
 
 After downloading, put the extracted directory `cars_train` and `cars_test` under `Image/StanfordCars`.
 
-(2) FGVC_Aircraft:
+#### (2) FGVC_Aircraft:
 http://www.robots.ox.ac.uk/~vgg/data/fgvc-aircraft/archives/fgvc-aircraft-2013b.tar.gz
 
 After downloading, put the extracted directory `fgvc-aircraft-2013b/data/images` under `Image/FGVC_Aircraft`.
 
-(3) CompCars:
+#### (3) CompCars:
 https://www.dropbox.com/sh/46de2cre37fvzu6/AABXtX8QqA6sx37k1IyZmNQ2a?dl=0
 
 Please contact the data provider of CompCars (yljatthu@gmail.com) for the extraction password.
@@ -44,13 +44,13 @@ After downloading, put the extracted directory `data/image` under `Image/CompCar
 
 ### 2. Download 3D CAD Models
 
-(1) Cars (For StanfordCars/CompCars Use)
+#### (1) Cars (For StanfordCars/CompCars Use)
 http://shapenet.cs.stanford.edu/shapenet/obj-zip/ShapeNetCore.v1/02958343.zip
 
 After downloading, put the extracted 02958343 under CAD/
 Please see `CAD/StanfordCars3D.txt` and `CAD/CompCars3D.txt` for the list of CAD models used in our 3D pose datasets.
 
-(2) Aircraft (For FGVC_Aircraft Use)
+#### (2) Aircraft (For FGVC_Aircraft Use)
 http://shapenet.cs.stanford.edu/shapenet/obj-zip/ShapeNetCore.v1/02691156.zip
 
 After downloading, put the extracted 02691156 under CAD/
