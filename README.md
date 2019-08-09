@@ -1,17 +1,13 @@
 # 3D Pose Annotation for Fine-Grained Object Categories
 
-
-
-I. Contents of Directories
+## Contents of Directories
 Release:
     Anno3D: 3D pose annotations for StanfordCars/FGVC_Aircraft/CompCars
     CAD: Sample CAD models from ShapeNet for visualization use; list of CAD models used in our datasets
     Image: Sample images from the fine-grained datasets for visualization use
     Scripts: Sample scripts to visualize the annotations
 
-
-
-II. Format of Annotations
+## Format of Annotations
 The annotations are packed in pickle (.pkl) files, each of which include a dictionary of annotations,
     dict['key'] = 'anno',
 where 'key' is the filename, and 'anno' is a dictionary containing the following fields:
@@ -21,9 +17,7 @@ where 'key' is the filename, and 'anno' is a dictionary containing the following
     'u', 'v': the principal point (u, v) introduced in Equation (3) 
     'f': the focal length f in Equation (3)
 
-
-
-III. Usage
+## Usage
 To use the 3D pose annotations, you need to download the 2D images from the fine-grained recognition datasets as well as the
 3D models from the ShapeNet dataset.
 
@@ -54,9 +48,7 @@ http://shapenet.cs.stanford.edu/shapenet/obj-zip/ShapeNetCore.v1/02691156.zip
 After downloading, put the extracted 02691156 under CAD/
 Please see CAD/FGVC_Aircraft3D.txt for the list of CAD models used in our 3D pose datasets.
 
-
-
-IV. Visualization and Scripts
+## Visualization and Scripts
 To visualize the samples, under $Release, run
 cd Scripts && bash ./sample_visualize.sh
 
@@ -65,9 +57,7 @@ utils.py: containing the code for projection as well as converting the angles to
 reader
 sample_visualize.py: containing the code for visualization
 
-
-
-V. Citation
+## Citation
 Please cite the following paper if you find the dataset useful
 
 @inproceedings{wang20183d,
