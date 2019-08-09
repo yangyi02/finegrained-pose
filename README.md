@@ -61,9 +61,9 @@ To visualize the samples, run
 `cd Scripts && bash ./sample_visualize.sh`
 
 The usage of our annotations can be seen from the following python scripts,
-`utils.py`: containing the code for projection as well as converting the angles to rotation matrix and a simple .obj file
+- `utils.py`: containing the code for projection as well as converting the angles to rotation matrix and a simple .obj file
 reader
-`sample_visualize.py`: containing the code for visualization
+- `sample_visualize.py`: containing the code for visualization
 
 ## Citation
 Please cite the paper in your publications if it helps your research:
