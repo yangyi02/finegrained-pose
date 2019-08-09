@@ -58,19 +58,19 @@ reader
 sample_visualize.py: containing the code for visualization
 
 ## Citation
-Please cite the following paper if you find the dataset useful
+Please cite the paper in your publications if it helps your research:
 
-@inproceedings{wang20183d,
-  title={3d pose estimation for fine-grained object categories},
-  author={Wang, Yaming and Tan, Xiao and Yang, Yi and Liu, Xiao and Ding, Errui and Zhou, Feng and Davis, Larry S},
-  booktitle={Proceedings of the European Conference on Computer Vision (ECCV)},
-  pages={0--0},
-  year={2018}
-}
+    @inproceedings{wang20183d,
+      title={3d pose estimation for fine-grained object categories},
+      author={Wang, Yaming and Tan, Xiao and Yang, Yi and Liu, Xiao and Ding, Errui and Zhou, Feng and Davis, Larry S},
+      booktitle={Proceedings of the European Conference on Computer Vision (ECCV)},
+      pages={0--0},
+      year={2018}
+    }
 
-@article{wang2018improving,
-  title={Improving Annotation for 3D Pose Dataset of Fine-Grained Object Categories},
-  author={Wang, Yaming and Tan, Xiao and Yang, Yi and Li, Ziyu and Liu, Xiao and Zhou, Feng and Davis, Larry S},
-  journal={arXiv preprint arXiv:1810.09263},
-  year={2018}
-}
+    @article{wang2018improving,
+      title={Improving Annotation for 3D Pose Dataset of Fine-Grained Object Categories},
+      author={Wang, Yaming and Tan, Xiao and Yang, Yi and Li, Ziyu and Liu, Xiao and Zhou, Feng and Davis, Larry S},
+      journal={arXiv preprint arXiv:1810.09263},
+      year={2018}
+    }
