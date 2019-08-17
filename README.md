@@ -79,11 +79,12 @@ Object Categories](http://openaccess.thecvf.com/content_ECCVW_2018/papers/11129/
 Please cite the paper in your publications if it helps your research:
 
     @inproceedings{wang20183d,
-      title={3d pose estimation for fine-grained object categories},
+      title={3D Pose Estimation for Fine-Grained Object Categories},
       author={Wang, Yaming and Tan, Xiao and Yang, Yi and Liu, Xiao and Ding, Errui and Zhou, Feng and Davis, Larry S},
-      booktitle={Proceedings of the European Conference on Computer Vision (ECCV)},
-      pages={0--0},
-      year={2018}
+      booktitle={European Conference on Computer Vision},
+      pages={619--632},
+      year={2018},
+      organization={Springer}
     }
 
     @article{wang2018improving,
